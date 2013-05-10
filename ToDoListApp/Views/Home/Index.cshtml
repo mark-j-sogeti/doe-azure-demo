@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ToDoListApp.Models.ToDoItem>
+
+@{
+    ViewBag.Title = "To Do Items";
+}
+
+<h2>To Do Items</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", "Home", null, new {id = "createID" })
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsComplete)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="itemName">
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td class="itemCheck">
+            @Html.DisplayFor(modelItem => item.IsComplete)
+        </td>
+        <td id="itemLinks">
+            @Html.ActionLink("Edit", "Edit", "Home", new { id = item.ToDoItemId }, new { @class = "editItemLink" }) |
+            @Html.ActionLink("Details", "Details", "Home", new { id = item.ToDoItemId }, new { @class = "detailsItemLink" }) |
+            @Html.ActionLink("Delete", "Delete", "Home", new { id = item.ToDoItemId },  new { @class = "deleteItemLink" })
+        </td>
+    </tr>
+}
+
+</table>
